@@ -3,13 +3,23 @@ const app = express();
 const bodyParser = require("body-parser");
 //const cookieParser = require('cookie-parser')
 const path = require("path");
-//const session = require('express-session');
+const session = require('express-session');
+
 let bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 
 require("dotenv").config();
 
 const PORT = process.env.PORT;
+
+app.use(session({
+    HttpOnly: true,
+    secure: true,
+    secret: 'secret key',//process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 24000 * 60 * 60 }
+}));
 
 app.use(cors());
 //app.use('/static', express.static(__dirname + '/front/public'));

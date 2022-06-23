@@ -6,15 +6,14 @@ let bcrypt = require('bcrypt-nodejs');
 
 router.get('/app/myinfo', function (req, res) {
     if (req.session.is_logined !== true) {
-        return res.send({
-            is_logined : req.session.is_logined
-        })
+        res.status(402).send("login failed");
     }
     else{
         const email = req.session.user.email;
-        db.mysql.query('SELETE email, nickname, job, department, year, desc FROM user_info WHERE email=?', email, (err, myInfo) => {
+        db.query('SELETE email, nickname, job, department, year, desc FROM user_info WHERE email=?', email, (err, myInfo) => {
         if (err) {
             console.log(err)
+            res.status(401).send("query error");
         }
         else if(myInfo){
             return res.status(200).send(myInfo)
@@ -25,16 +24,15 @@ router.get('/app/myinfo', function (req, res) {
 
 router.put('/app/myinfo', function (req, res) {
     if (req.session.is_logined !== true) {
-        return res.send({
-            is_logined: false
-        })
+        res.status(402).send("login failed");
     }
     else{
         const email = req.session.user.email;
         const { nickname, job, department, year, desc } = {nickname, job, department, year, desc}
-        db.mysql.query('UPDATE SET nickname=?, job=?, department=?, year=?, desc=? WHERE email=?', nickname, job, department, year, desc, email, (err) => {
+        db.query('UPDATE SET nickname=?, job=?, department=?, year=?, desc=? WHERE email=?', nickname, job, department, year, desc, email, (err) => {
         if (err) {
             console.log(err)
+            res.status(401).send("query error");
         }
         else{
             return res.status(200)
