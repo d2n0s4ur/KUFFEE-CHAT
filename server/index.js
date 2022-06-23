@@ -11,7 +11,9 @@ require("dotenv").config();
 
 const PORT = process.env.PORT;
 
-app.use("/static", express.static(path.join(__dirname, "public")));
+//app.use('/static', express.static(__dirname + '/front/public'));
+app.use('/static', express.static(path.join(__dirname, '..','front')));
+//app.use(express.static('front'));
 //app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -26,9 +28,13 @@ app.use(require("./auth/login-router"));
 app.use(require("./auth/signup-router"));
 
 app.get("/app", (req, res) => {
-    res.sendFile(path.join(__dirname + "../client/"));
+    res.sendFile(path.join(__dirname, '..', "/front/public/index.html"));
 });
 
 app.listen(PORT, () => {
 	console.log(`listening on ${PORT}`);
 });
+
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname,  '..', "/front/public/index.html"));
+  });
