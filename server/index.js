@@ -5,12 +5,13 @@ const bodyParser = require("body-parser");
 const path = require("path");
 //const session = require('express-session');
 let bcrypt = require('bcrypt-nodejs');
-
+const cors = require('cors');
 
 require("dotenv").config();
 
 const PORT = process.env.PORT;
 
+app.use(cors());
 //app.use('/static', express.static(__dirname + '/front/public'));
 app.use('/static', express.static(path.join(__dirname, '..','front')));
 //app.use(express.static('front'));
@@ -35,6 +36,8 @@ app.listen(PORT, () => {
 	console.log(`listening on ${PORT}`);
 });
 
+/*
 app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname,  '..', "/front/public/index.html"));
   });
+*/
