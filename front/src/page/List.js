@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import './List.css'
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function List(props) {
+
+	const [backendData, setBackendData] = useState([{}]);
+	useEffect(() => {
+		fetch("/app/category").then(
+			response => response.json()
+		).then(
+			data => {
+				setBackendData(data)
+			}
+		)
+	}, [])
+
     return (
 		<>
 			<div className='container'>
