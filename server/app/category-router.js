@@ -3,13 +3,14 @@ const router = express.Router();
 const db = require('../config/db');
 let bcrypt = require('bcrypt-nodejs');
 
-
 router.get('/app/category', function (req, res) {
-    if (req.session.is_logined !== true) {
-      return res.redirect('/app')
-    }
-    return res.render('main', { title: "메인페이지" });
+    return res.send({
+        is_logined: false
+    })
+    return res.status(200)
 });
+
+/*
   
 router.get('/app/category/:tag', function(req, res){
     if (req.session.is_logined !== true) {
@@ -26,5 +27,5 @@ router.get('/app/category/:tag', function(req, res){
         }
     })
 });
-  
+*/
 module.exports = router;

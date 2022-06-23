@@ -5,7 +5,9 @@ let bcrypt = require('bcrypt-nodejs');
 
 router.get('/app/users/:nickname', function (req, res) {
     if (req.session.is_logined !== true) {
-        return res.redirect('/app')
+        return res.send({
+            is_logined: false
+        })
     }
     else{
         const email = req.session.user.email;
@@ -25,7 +27,6 @@ router.get('/app/users/:nickname', function (req, res) {
             })
         }
     })
-
     }
 });
 

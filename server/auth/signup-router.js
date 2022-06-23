@@ -13,7 +13,7 @@ router.post('/auth/new', (req, res, next) => {
             console.log(err)
         }
         else {
-            return res.redirect('/app/category')
+            return res.status(200)
         }
     })
 })

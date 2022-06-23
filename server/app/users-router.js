@@ -7,7 +7,9 @@ const e = require('express');
 
 router.get('/app/users/:nickname', function (req, res) {
     if (req.session.is_logined !== true) {
-        return res.redirect('/app')
+        return res.send({
+            is_logined: false
+        })
     }
     else{
         const { nickname } = req.body;
@@ -20,7 +22,7 @@ router.get('/app/users/:nickname', function (req, res) {
         }
     })
     }
-    return res.render('main', { title: "메인페이지" });
+    return res.send(200)
 });
 
 module.exports = router;
