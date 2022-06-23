@@ -11,7 +11,7 @@ router.get('/app/users/:nickname', function (req, res) {
     }
     else{
         const { nickname } = req.body;
-        db.mysql.query('SELETE nickname, dname, year, job, desc FROM users WHERE nickname=?', nickname, (err, profile) => {
+        db.mysql.query('SELETE email, nickname, job, department, year, desc FROM user_info WHERE nickname=?', nickname, (err, profile) => {
         if (err) {
             console.log(err)
         }

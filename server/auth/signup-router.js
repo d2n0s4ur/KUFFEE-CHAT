@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/db')
 const bcrypt = require('bcrypt-nodejs');
-const { InputError, DuplicateError } = require('../controllers/error-handler');
+
 
 router.post('/auth/new', (req, res, next) => {
-    const { email, password, nickname, dname, year, job, desc} = req.body;
+    const { email, nickname, job, department, year, desc, password } = req.body;
     password = bcrypt.hashSync(password)
-    const sql = {email, password, nickname, dname, year, job, desc}
-    db.mysql.query('INSERT INTO users set ?', sql, (err) => {
+    const sql = {email, nickname, job, department, year, desc, password}
+    db.mysql.query('INSERT INTO user_info (email, nickname, job, department, year, desc, password ) VALUES ?', sql, (err) => {
         if (err) {
             console.log(err)
         }
@@ -23,7 +23,7 @@ router.post('/auth/nickname', (req, res) =>{
     if (nickname === undefined){
         throw new InputError();
     }
-    db.mysql.query('SELECT nickname FROM users WHERE nickname=?', nickname, (err, obj) =>{
+    db.mysql.query('SELECT nickname FROM user_info WHERE nickname=?', nickname, (err, obj) =>{
         if (err) {
             console.log(err)
             return res.render('error', { message: "중복된 닉네임 입니다." })
@@ -42,7 +42,7 @@ router.post('/auth/email', (req, res) =>{
     if (nickname === undefined){
         throw new InputError();
     }
-    db.mysql.query('SELECT email FROM users WHERE email=?', email, (err, obj) =>{
+    db.mysql.query('SELECT email FROM user_info WHERE email=?', email, (err, obj) =>{
         if (err) {
             console.log(err)
             return res.render('error', { message: "이미 등록된 이메일 입니다." })

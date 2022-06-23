@@ -16,10 +16,10 @@ router.get('/app/category/:tag', function(req, res){
         return res.redirect('/app')
       }
     const { tag } = req.body;
-    db.mysql.query('SELETE nickname, dname, year, job, desc FROM users WHERE tag=?', tag, (err, tagList) => {
+    db.mysql.query('SELETE nickname, job, department, year, desc FROM user_info WHERE tag=?', tag, (err, tagList) => {
         if (err) {
             console.log(err)
-            return res.render('error', { message: "" })
+            //return res.render('error', { message: "" })
         }
         else if(tagList){
             return res.status(200).send(tagList)
