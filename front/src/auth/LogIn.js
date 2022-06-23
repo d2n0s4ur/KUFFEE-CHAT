@@ -26,7 +26,7 @@ function LogIn(props) {
 						<input className="ID" type="email" placeholder='ID(EMAIL)' onChange={onChange} value={ID} />
 							<input className="PW" type="password" placeholder='PW' onChange={onChange} value={PW} />
                    		</div>
-						<p className='reg'>Register</p>
+						<a href="/SignUp"><p className='reg'>Register</p></a>
 						<div className="submit">
                     		<button className="LogIn_Button" type="submit">login</button>
                     	</div>
