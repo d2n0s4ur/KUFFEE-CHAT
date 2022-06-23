@@ -4,29 +4,23 @@ const db = require('../config/db');
 let bcrypt = require('bcrypt-nodejs');
 
 router.get('/auth/login', function (req, res) {
-  return res.render('index', { title: '로그인' });
+  return res.status(200)
 });
 
 router.post('/auth/login', (req, res) => {
   const { email, password } = req.body;
   db.query('SELECT email, password FROM user_info WHERE email = ?', [email], (err, userInfo) => {
     if (err || !userInfo[0]) {
-      res.json({ error: err })
+      res.status(400).send("아이디 또는 비밀번호가 일치하지 않습니다.");
     }
     bcrypt.compare(password, userInfo[0].password, (err, tf) => {
       if (tf !== true) {
-        // return res.render('error', { message: "아이디 또는 비밀번호를 확인해주세요." })
-        res.status(err.status || 500);
-        res.json({
-          message: err.message,
-          error: err
-        });
+        res.status(400).send("아이디 또는 비밀번호가 일치하지 않습니다.");
       } else {
         req.session.is_logined = true;
-        req.session.user = {
-            email : email
-        }
-        return res.send({is_logined : req.session.is_logined})
+        req.session.user = email;
+        req.session.save();
+        return res.send();
       }
     })
   })

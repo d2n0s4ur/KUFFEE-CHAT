@@ -11,9 +11,13 @@ router.post('/auth/new', (req, res, next) => {
     db.query('INSERT INTO user_info (`email`, `nickname`, `job`, `department`, `year`, `desc`, `password` ) VALUES (?, ?, ?, ?, ?, ?, ?)', [email, nickname, job, department, year, desc, password], (err) => {
         if (err) {
             console.log(err)
+            res.status(401).send("query error");
         }
         else {
-            return res.status(200)
+            req.session.is_logined = true;
+            req.session.user = email;
+            req.session.save();
+            return res.send();
         }
     })
 })
@@ -21,12 +25,12 @@ router.post('/auth/new', (req, res, next) => {
 router.post('/auth/nickname', (req, res) =>{
     const { nickname } = req.body
     if (nickname === undefined){
-        throw new InputError();
+        res.status(400).send("undefined value");
     }
     db.mysql.query('SELECT nickname FROM user_info WHERE nickname=?', nickname, (err, obj) =>{
         if (err) {
             console.log(err)
-            return res.render('error', { message: "중복된 닉네임 입니다." })
+            res.status(400).send("중복된 닉네임 입니다.");
         }
         if (obj === null){
             res.send({ duplicate: false })
@@ -38,18 +42,13 @@ router.post('/auth/nickname', (req, res) =>{
 })
 
 router.post('/auth/email', (req, res) =>{
-    const { nickname } = req.body
-    if (nickname === undefined){
-        res.status(err.status || 500);
-res.json({
-  message: err.message,
-  error: err
-});
+    const { email } = req.body
+    if (email === undefined){
+        res.status(400).send("undefined value");
     }
     db.query('SELECT email FROM user_info WHERE email=?', email, (err, obj) =>{
         if (err) {
-            console.log(err)
-            return res.render('error', { message: "이미 등록된 이메일 입니다." })
+            res.status(401).send("query error");
         }
         if (obj === null){
             res.send({ duplicate: false })

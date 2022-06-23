@@ -5,21 +5,21 @@ let bcrypt = require('bcrypt-nodejs');
 
 router.get('/app/users/:nickname', function (req, res) {
     if (req.session.is_logined !== true) {
-        return res.send({
-            is_logined : req.session.is_logined
-        })
+        res.status(402).send("login failed");
     }
     else{
         const email = req.session.user.email;
-        db.mysql.query('SELETE uid FROM user_info WHERE email=?', email, (err, uid) => {
+        db.query('SELETE uid FROM user_info WHERE email=?', email, (err, uid) => {
         if (err) {
             console.log(err)
+            res.status(400).send("query error");
         }
         else if(uid){
             //const uid = uid[0];
-            db.mysql.query('SELECT nickname, job, department, year, desc FROM user_info WHERE uid IN (SELECT favID FROM bookmark WHERE uid=?)', uid, (err, myList) =>{
+            db.query('SELECT nickname, job, department, year, desc FROM user_info WHERE uid IN (SELECT favID FROM bookmark WHERE uid=?)', uid, (err, myList) =>{
                 if(err){
                     console.log(err)
+                    res.status(400).send("query error");
                 }
                 else{
                     return res.status(200).send(myList)
