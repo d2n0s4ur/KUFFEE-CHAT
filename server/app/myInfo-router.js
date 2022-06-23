@@ -5,10 +5,12 @@ let bcrypt = require('bcrypt-nodejs');
 
 
 router.get('/app/myinfo', function (req, res) {
+    /*
     if (req.session.is_logined !== true) {
         res.status(402).send("login failed");
     }
     else{
+    */
         const email = req.session.user.email;
         db.query('SELETE email, nickname, job, department, year, desc, tag FROM user_info WHERE email=?', email, (err, myInfo) => {
         if (err) {
@@ -19,7 +21,7 @@ router.get('/app/myinfo', function (req, res) {
             return res.status(200).send(myInfo)
         }
     })
-    }
+   // }
 });
 
 router.put('/app/myinfo', function (req, res) {

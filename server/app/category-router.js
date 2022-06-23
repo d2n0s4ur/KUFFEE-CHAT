@@ -4,9 +4,11 @@ const db = require('../config/db');
 let bcrypt = require('bcrypt-nodejs');
 
 router.get('/app/category', function (req, res) {
+    /*
     if (req.session.is_logined !== true) {
         res.status(402).send("login failed");
     }
+    */
     return res.status(200)
 });
 

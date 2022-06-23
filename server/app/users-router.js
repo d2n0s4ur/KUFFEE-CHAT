@@ -6,21 +6,23 @@ const e = require('express');
 
 
 router.get('/app/users/:nickname', function (req, res) {
+    /*
     if (req.session.is_logined !== true) {
         res.status(402).send("login failed");
     }
     else{
+        */
         const { nickname } = req.params;
         db.query('SELETE email, nickname, job, department, year, desc, tag FROM user_info WHERE nickname=?', nickname, (err, profile) => {
         if (err) {
             console.log(err)
-            res.status(401).send("query error");
+            return res.status(401).send("query error");
         }
         else if(profile){
             return res.status(200).send(profile)
         }
     })
-    }
+    //}
     return res.send(200)
 });
 
