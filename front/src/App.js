@@ -17,12 +17,12 @@ function App() {
         <div className='Contents-wrapper'>
         <BrowserRouter>
           <Routes>
-            <Route path='LogIn' element={<LogIn />} />
-            <Route path='SignUp' element={<SignUp />} />
-            <Route path='Auth' element={<Auth />} />
-            <Route path='Profile' element={<Profile />} />
-            <Route path='Chat' element={<Chat />} />
-            <Route path='Edit' element={<Edit />} />
+            <Route path='/LogIn' element={<LogIn />} />
+            <Route path='/SignUp' element={<SignUp />} />
+            <Route path='/Auth' element={<Auth />} />
+            <Route path='/Profile/:nickname' element={<Profile />} />
+            <Route path='/Chat' element={<Chat />} />
+            <Route path='/Edit' element={<Edit />} />
             <Route exact path='/' element={<List />} />
           </Routes>
         </BrowserRouter>
