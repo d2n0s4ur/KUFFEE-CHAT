@@ -30,12 +30,15 @@ function LogIn(props) {
 						<div className="submit">
                     		<button className="LogIn_Button" onClick={()=>{
 								axios.post("http://localhost:8080/auth/login", {
-									email: "cs@korea.ac.kr",
-									password: "qwer123"
+									email: {ID}['ID'],
+									password: {PW}['PW']
 								}).then((response)=>{
-									console.log(response);
+									alert("환영합니다!");
+									window.location.href="/";
 								}).catch((error)=> {
 									console.log(error);
+									alert("오류가 발생했습니다 : "+error);
+									window.location.href="/LogIn";
 								})
 							}}>login</button>
                     	</div>
