@@ -9,6 +9,7 @@ import List from './page/List';
 import Chat from './chat/Chat';
 import Profile from './page/Profile';
 import LogIn from './auth/LogIn';
+import Edit from './auth/Edit';
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
             <Route path='Auth' element={<Auth />} />
             <Route path='Profile' element={<Profile />} />
             <Route path='Chat' element={<Chat />} />
-            <Route path='/' element={<List />} />
+            <Route path='Edit' element={<Edit />} />
+            <Route exact path='/' element={<List />} />
           </Routes>
         </BrowserRouter>
         </div>

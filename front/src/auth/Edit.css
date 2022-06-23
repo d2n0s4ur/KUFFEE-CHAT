@@ -1,0 +1,59 @@
+
+.edit.profile {
+    width: 100%;
+    height: 100px;
+    /* background: gray; */
+	margin-bottom: 20px;
+}
+
+.edit.profile_img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    float: left;
+  
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: white;
+    margin: 0;
+}
+
+.edit.name {
+	line-height: 100px;
+	font-weight: bold;
+}
+
+.Edit.inputform{
+	width: 90%;
+	margin: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-top: 10px;
+}
+
+.Edit.inputTag {
+	align-self: center;
+	flex-basis: 30%;
+	text-align: left;
+}
+
+.Edit.input {
+	width: 60%;
+	display: inline-block;
+}
+
+.Editprofile {
+	border: none;
+	border-radius: 4px;
+	background-color: #6c1225;
+	color: white;
+	font-weight: 300;
+	width: 200px;
+	height: 40px;
+	font-size: 15px;
+	margin: auto;
+	margin-top: 40px;
+	display: block;
+}
