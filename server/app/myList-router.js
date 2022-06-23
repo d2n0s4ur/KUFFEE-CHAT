@@ -6,7 +6,7 @@ let bcrypt = require('bcrypt-nodejs');
 router.get('/app/users/:nickname', function (req, res) {
     if (req.session.is_logined !== true) {
         return res.send({
-            is_logined: false
+            is_logined : req.session.is_logined
         })
     }
     else{

@@ -22,7 +22,7 @@ router.post('/auth/login', (req, res) => {
         req.session.user = {
             email : email
         }
-        return res.redirect('/app/category')
+        return res.send({is_logined : req.session.is_logined})
       }
     })
   })

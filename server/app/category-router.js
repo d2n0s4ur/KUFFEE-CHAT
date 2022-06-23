@@ -5,7 +5,7 @@ let bcrypt = require('bcrypt-nodejs');
 
 router.get('/app/category', function (req, res) {
     return res.send({
-        is_logined: false
+        is_logined : req.session.is_logined
     })
     return res.status(200)
 });
