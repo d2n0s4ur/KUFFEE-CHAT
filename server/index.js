@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 
 app.use(require("./app/category-router"));
 app.use(require("./app/myInfo-router"));
-app.use(require("./app/myList-router"));
+//app.use(require("./app/myList-router"));
 app.use(require("./app/users-router"));
 app.use(require("./auth/login-router"));
 app.use(require("./auth/signup-router"));
