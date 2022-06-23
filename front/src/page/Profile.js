@@ -6,7 +6,7 @@ import './Profile.css'
 
 function Profile({match}) {
 	const {nickname} = useParams();
-	axios.get("http://localhost:8080/users/"+nickname).then((response)=> {
+	axios.get("http://localhost:8080/app/users/"+nickname).then((response)=> {
 		console.log(response);
 		return (
 			<>
