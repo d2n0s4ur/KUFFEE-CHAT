@@ -7,8 +7,8 @@ const bcrypt = require('bcrypt-nodejs');
 router.post('/auth/new', (req, res, next) => {
     let { email, nickname, job, department, year, desc, password } = req.body;
     password = bcrypt.hashSync(password)
-    const sql = [email, nickname, job, department, year, desc, password]
-    db.query('INSERT INTO user_info (`email`, `nickname`, `job`, `department`, `year`, `desc`, `password` ) VALUES (?, ?, ?, ?, ?, ?, ?)', [email, nickname, job, department, year, desc, password], (err) => {
+    const sql = [email, nickname, job, department, year, desc, password, tag]
+    db.query('INSERT INTO user_info (`email`, `nickname`, `job`, `department`, `year`, `desc`, `password`, `tag` ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [email, nickname, job, department, year, desc, password, tag], (err) => {
         if (err) {
             console.log(err)
             res.status(401).send("query error");

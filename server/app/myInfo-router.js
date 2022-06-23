@@ -10,7 +10,7 @@ router.get('/app/myinfo', function (req, res) {
     }
     else{
         const email = req.session.user.email;
-        db.query('SELETE email, nickname, job, department, year, desc FROM user_info WHERE email=?', email, (err, myInfo) => {
+        db.query('SELETE email, nickname, job, department, year, desc, tag FROM user_info WHERE email=?', email, (err, myInfo) => {
         if (err) {
             console.log(err)
             res.status(401).send("query error");
@@ -28,8 +28,8 @@ router.put('/app/myinfo', function (req, res) {
     }
     else{
         const email = req.session.user.email;
-        const { nickname, job, department, year, desc } = {nickname, job, department, year, desc}
-        db.query('UPDATE SET nickname=?, job=?, department=?, year=?, desc=? WHERE email=?', nickname, job, department, year, desc, email, (err) => {
+        const { nickname, job, department, year, desc, tag } = {nickname, job, department, year, desc, tag}
+        db.query('UPDATE SET nickname=?, job=?, department=?, year=?, desc=?, tag=? WHERE email=?', nickname, job, department, year, desc, tag, email, (err) => {
         if (err) {
             console.log(err)
             res.status(401).send("query error");

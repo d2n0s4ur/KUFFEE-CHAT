@@ -11,7 +11,7 @@ router.post('/auth/login', (req, res) => {
   const { email, password } = req.body;
   db.query('SELECT email, password FROM user_info WHERE email = ?', [email], (err, userInfo) => {
     if (err || !userInfo[0]) {
-      res.status(400).send("아이디 또는 비밀번호가 일치하지 않습니다.");
+      return res.status(400).send("아이디 또는 비밀번호가 일치하지 않습니다.");
     }
     bcrypt.compare(password, userInfo[0].password, (err, tf) => {
       if (tf !== true) {

@@ -16,7 +16,7 @@ router.get('/app/users/:nickname', function (req, res) {
         }
         else if(uid){
             //const uid = uid[0];
-            db.query('SELECT nickname, job, department, year, desc FROM user_info WHERE uid IN (SELECT favID FROM bookmark WHERE uid=?)', uid, (err, myList) =>{
+            db.query('SELECT nickname, job, department, year, desc, tag FROM user_info WHERE uid IN (SELECT favID FROM bookmark WHERE uid=?)', uid, (err, myList) =>{
                 if(err){
                     console.log(err)
                     res.status(400).send("query error");

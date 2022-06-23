@@ -10,8 +10,8 @@ router.get('/app/users/:nickname', function (req, res) {
         res.status(402).send("login failed");
     }
     else{
-        const { nickname } = req.body;
-        db.query('SELETE email, nickname, job, department, year, desc FROM user_info WHERE nickname=?', nickname, (err, profile) => {
+        const { nickname } = req.params;
+        db.query('SELETE email, nickname, job, department, year, desc, tag FROM user_info WHERE nickname=?', nickname, (err, profile) => {
         if (err) {
             console.log(err)
             res.status(401).send("query error");
