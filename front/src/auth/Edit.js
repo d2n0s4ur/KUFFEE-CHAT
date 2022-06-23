@@ -22,7 +22,7 @@ function Edit(props) {
 		});
 	};
 
-	axios.get("http://localhost:8080/users/"+nickname).then((response)=> {
+	axios.get("http://localhost:8080/app/myinfo").then((response)=> {
 		console.log(response);
 		setInputs(response);
 		return (

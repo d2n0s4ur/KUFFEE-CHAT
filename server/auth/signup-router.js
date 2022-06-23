@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 
 router.post('/auth/new', (req, res, next) => {
-    let { email, nickname, job, department, year, desc, password } = req.body;
+    let { email, nickname, job, department, year, desc, password, tag } = req.body;
     password = bcrypt.hashSync(password)
     const sql = [email, nickname, job, department, year, desc, password, tag]
     db.query('INSERT INTO user_info (`email`, `nickname`, `job`, `department`, `year`, `desc`, `password`, `tag` ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)', [email, nickname, job, department, year, desc, password, tag], (err) => {
