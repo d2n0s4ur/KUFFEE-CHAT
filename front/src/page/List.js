@@ -18,6 +18,7 @@ function List(props) {
                     		<div className="info">
                         		<span className="name">d2n0s4ur 님</span>
                         		<span className="job">Google Korea</span>
+								<span></span>
                    			</div>
                			</div>
 					   <div className="tag">
