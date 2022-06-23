@@ -5,10 +5,10 @@ const bcrypt = require('bcrypt-nodejs');
 
 
 router.post('/auth/new', (req, res, next) => {
-    const { email, nickname, job, department, year, desc, password } = req.body;
+    let { email, nickname, job, department, year, desc, password } = req.body;
     password = bcrypt.hashSync(password)
-    const sql = {email, nickname, job, department, year, desc, password}
-    db.mysql.query('INSERT INTO user_info (email, nickname, job, department, year, desc, password ) VALUES ?', sql, (err) => {
+    const sql = [email, nickname, job, department, year, desc, password]
+    db.query('INSERT INTO user_info (`email`, `nickname`, `job`, `department`, `year`, `desc`, `password` ) VALUES (?, ?, ?, ?, ?, ?, ?)', [email, nickname, job, department, year, desc, password], (err) => {
         if (err) {
             console.log(err)
         }
@@ -40,9 +40,13 @@ router.post('/auth/nickname', (req, res) =>{
 router.post('/auth/email', (req, res) =>{
     const { nickname } = req.body
     if (nickname === undefined){
-        throw new InputError();
+        res.status(err.status || 500);
+res.json({
+  message: err.message,
+  error: err
+});
     }
-    db.mysql.query('SELECT email FROM user_info WHERE email=?', email, (err, obj) =>{
+    db.query('SELECT email FROM user_info WHERE email=?', email, (err, obj) =>{
         if (err) {
             console.log(err)
             return res.render('error', { message: "이미 등록된 이메일 입니다." })

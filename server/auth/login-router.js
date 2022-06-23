@@ -9,14 +9,18 @@ router.get('/auth/login', function (req, res) {
 
 router.post('/auth/login', (req, res) => {
   const { email, password } = req.body;
-  db.mysql.query('SELECT  email, password FROM user_infor WHERE email =?', email, (err, userInfo) => {
+  db.query('SELECT email, password FROM user_info WHERE email = ?', [email], (err, userInfo) => {
     if (err || !userInfo[0]) {
-      return res.render('error', { message: "아이디 또는 비밀번호를 확인해주세요." })
+      res.json({ error: err })
     }
-
     bcrypt.compare(password, userInfo[0].password, (err, tf) => {
       if (tf !== true) {
-        return res.render('error', { message: "아이디 또는 비밀번호를 확인해주세요." })
+        // return res.render('error', { message: "아이디 또는 비밀번호를 확인해주세요." })
+        res.status(err.status || 500);
+        res.json({
+          message: err.message,
+          error: err
+        });
       } else {
         req.session.is_logined = true;
         req.session.user = {
