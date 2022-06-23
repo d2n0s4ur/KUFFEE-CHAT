@@ -29,38 +29,6 @@ function List(props) {
 						</div>
 					</Card.Body>
     			</Card>
-				<Card className="card shadow">
-      				<Card.Body>
-					  	<div className="profile">
-                    		<img src="./profile.png" className="profile_img" />
-                    		<div className="info">
-                        		<span className="name">d2n0s4ur 님</span>
-                        		<span className="job">Google Korea</span>
-                   			</div>
-							   <span className="sendDM"><FontAwesomeIcon icon={faPaperPlane} /></span>
-               			</div>
-					   <div className="tag">
-							<span>백엔드 | 1-4년차</span><br/>
-							<span>#웹 개발 #DevOps #포렌식 #취업 #상담</span>
-						</div>
-					</Card.Body>
-    			</Card>
-				<Card className="card shadow">
-      				<Card.Body>
-					  	<div className="profile">
-                    		<img src="./profile.png" className="profile_img" />
-                    		<div className="info">
-                        		<span className="name">d2n0s4ur 님</span>
-                        		<span className="job">Google Korea</span>
-                   			</div>
-							   <span className="sendDM"><FontAwesomeIcon icon={faPaperPlane} /></span>
-               			</div>
-					   <div className="tag">
-							<span>백엔드 | 1-4년차</span><br/>
-							<span>#웹 개발 #DevOps #포렌식 #취업 #상담</span>
-						</div>
-					</Card.Body>
-    			</Card>
 				</div>
 			</div>
 			

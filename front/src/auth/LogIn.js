@@ -5,9 +5,8 @@ function LogIn(props) {
 	const [inputs, setInputs] = useState({
 		ID: '',
 		PW: '',
-		PW_again: ''
 	});
-	const {ID, PW, PW_again} = inputs;
+	const {ID, PW} = inputs;
 
 	const onChange = (e) => {
 		const { value, name } = e.target;
@@ -23,8 +22,8 @@ function LogIn(props) {
 				<div className="form">
                 	<form>
                     	<div className="input_box">
-						<input className="ID" type="email" placeholder='ID(EMAIL)' onChange={onChange} value={ID} />
-							<input className="PW" type="password" placeholder='PW' onChange={onChange} value={PW} />
+						<input name="ID" className="ID" type="email" placeholder='ID(EMAIL)' onChange={onChange} value={ID} />
+							<input name="PW" className="PW" type="password" placeholder='PW' onChange={onChange} value={PW} />
                    		</div>
 						<a href="/SignUp"><p className='reg'>Register</p></a>
 						<div className="submit">

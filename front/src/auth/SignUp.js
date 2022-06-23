@@ -23,9 +23,9 @@ function SignUp(props) {
 				<div className="form">
                 	<form>
                     	<div className="input_box">
-                        	<input className="ID" type="email" placeholder='ID(EMAIL)' onChange={onChange} value={ID} />
-							<input className="PW" type="password" placeholder='PW' onChange={onChange} value={PW} />
-							<input className="PW" type="password" placeholder='PW Again' onChange={onChange} value={PW_again} />
+                        	<input name="ID" className="ID" type="email" placeholder='ID(EMAIL)' onChange={onChange} value={ID} />
+							<input name="PW" className="PW" type="password" placeholder='PW' onChange={onChange} value={PW} />
+							<input name="PW_again" className="PW" type="password" placeholder='PW Again' onChange={onChange} value={PW_again} />
                    		</div>
 						<div className="submit">
                     		<button className="LogIn_Button" type="submit">Register</button>
